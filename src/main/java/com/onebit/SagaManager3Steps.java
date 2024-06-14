@@ -12,35 +12,35 @@ public class SagaManager3Steps {
 
     public static final String ERROR_DURANTE_LA_TRANSACCION = "Error durante la transacción: ";
     public static final String TRANSACCION_COMPENSADA = "Transacción compensada";
-    private final SagaOrder3Steps sagaOrder;
+    private final SagaOrder3Steps sagaOrder3Steps;
 
     public void processTransaction() {
 
         try {
             // Paso 1: Crear Pedido
-            if (!sagaOrder.createOrder()) {
+            if (!sagaOrder3Steps.createOrder()) {
                 throw new CreateOrderException("Error al crear el pedido.");
             }
 
             // Paso 2: Deducir Inventario
-            if (!sagaOrder.deductInventory()) {
+            if (!sagaOrder3Steps.deductInventory()) {
                 throw new InventoryDeductionException("Error al deducir inventario.");
             }
 
             // Paso 3: Procesar Pago
-            if (!sagaOrder.processPayment()) {
+            if (!sagaOrder3Steps.processPayment()) {
                 throw new PaymentProcessException("Error al procesar el pago.");
             }
 
             log.info("Transacción completada con éxito.");
         } catch (CreateOrderException createOrderException) {
             log.info(ERROR_DURANTE_LA_TRANSACCION + createOrderException.getMessage());
-            sagaOrder.compensateCreateOrder();
+            sagaOrder3Steps.compensateCreateOrder();
             log.info(TRANSACCION_COMPENSADA);
         } catch (InventoryDeductionException inventoryDeductionException) {
             log.info(ERROR_DURANTE_LA_TRANSACCION + inventoryDeductionException);
-            sagaOrder.compensateDeductInventory();
-            sagaOrder.compensateCreateOrder();
+            sagaOrder3Steps.compensateDeductInventory();
+            sagaOrder3Steps.compensateCreateOrder();
             log.info(TRANSACCION_COMPENSADA);
         } catch (PaymentProcessException paymentProcessException) {
             log.info(ERROR_DURANTE_LA_TRANSACCION + paymentProcessException);
@@ -56,9 +56,9 @@ public class SagaManager3Steps {
     }
 
     private void compensateCompleteTransaction() {
-        sagaOrder.compensateProcessPayment();
-        sagaOrder.compensateDeductInventory();
-        sagaOrder.compensateCreateOrder();
+        sagaOrder3Steps.compensateProcessPayment();
+        sagaOrder3Steps.compensateDeductInventory();
+        sagaOrder3Steps.compensateCreateOrder();
     }
 }
 

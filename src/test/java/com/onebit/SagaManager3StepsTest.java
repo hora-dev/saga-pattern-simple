@@ -94,5 +94,18 @@ class SagaManager3StepsTest {
         verify(sagaOrder3StepsMock, times(1)).compensateDeductInventory();
         verify(sagaOrder3StepsMock, times(1)).compensateCreateOrder();
     }
+
+    @Test
+    void testGeneralException() {
+        // Configurar el mock para que lance una excepción inesperada
+        when(sagaOrder3StepsMock.createOrder()).thenThrow(new RuntimeException("Unexpected error"));
+
+        sagaManager3Steps.processTransaction();
+
+        // Verificar que se llamaron todas las compensaciones
+        verify(sagaOrder3StepsMock, times(1)).compensateCreateOrder();
+        verify(sagaOrder3StepsMock, times(1)).compensateDeductInventory();
+        verify(sagaOrder3StepsMock, times(1)).compensateProcessPayment();
+    }
 }
 

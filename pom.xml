@@ -12,7 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.login>squ_03c66caadd784f5ab662c1abd2e5f5340089f2ef</sonar.login>
+        <sonar.login>squ_0ad538118ac51c86861cf9e472baa058616e109b</sonar.login>
     </properties>
 
     <dependencies>

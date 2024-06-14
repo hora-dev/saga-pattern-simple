@@ -1,17 +1,15 @@
 package com.onebit;
 
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-public class OrderSaga {
+@NoArgsConstructor
+public class SagaOrder {
 
     private boolean orderCreated;
     private boolean orderCompleted;
-
-    public OrderSaga() {
-        this.orderCreated = false;
-        this.orderCompleted = false;
-    }
 
     public void createOrder() {
         // Lógica para crear la orden

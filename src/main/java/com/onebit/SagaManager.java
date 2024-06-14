@@ -6,9 +6,9 @@ public class SagaManager {
 
     @Getter
     private boolean sagaActive;
-    private OrderSaga currentSaga;
+    private SagaOrder currentSaga;
 
-    public void startSaga(OrderSaga saga) {
+    public void startSaga(SagaOrder saga) {
         this.currentSaga = saga;
         saga.createOrder();
         this.sagaActive = true;

@@ -10,34 +10,34 @@ import static org.mockito.Mockito.*;
 class SagaManagerTest {
 
     private SagaManager sagaManager;
-    private OrderSaga orderSaga;
+    private SagaOrder sagaOrder;
 
     @BeforeEach
     void setUp() {
         sagaManager = new SagaManager();
-        orderSaga = Mockito.mock(OrderSaga.class);
+        sagaOrder = Mockito.mock(SagaOrder.class);
     }
 
     @Test
     void testStartSaga() {
-        sagaManager.startSaga(orderSaga);
-        verify(orderSaga, times(1)).createOrder();
+        sagaManager.startSaga(sagaOrder);
+        verify(sagaOrder, times(1)).createOrder();
         assertTrue(sagaManager.isSagaActive());
     }
 
     @Test
     void testCompleteSaga() {
-        sagaManager.startSaga(orderSaga);
+        sagaManager.startSaga(sagaOrder);
         sagaManager.completeSaga();
-        verify(orderSaga, times(1)).completeOrder();
+        verify(sagaOrder, times(1)).completeOrder();
         assertFalse(sagaManager.isSagaActive());
     }
 
     @Test
     void testCompensateSagaOnFailure() {
-        sagaManager.startSaga(orderSaga);
+        sagaManager.startSaga(sagaOrder);
         sagaManager.failSaga();
-        verify(orderSaga, times(1)).compensateCreateOrder();
+        verify(sagaOrder, times(1)).compensateCreateOrder();
         assertFalse(sagaManager.isSagaActive());
     }
 }

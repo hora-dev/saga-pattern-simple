@@ -5,11 +5,11 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OrderSaga3PasosTest {
+class SagaOrder3PasosTest {
 
     @Test
-    public void testCreateOrder() {
-        PedidoSaga3Pasos saga = Mockito.spy(new PedidoSaga3Pasos());
+    void testCreateOrder() {
+        SagaOrder3Steps saga = Mockito.spy(new SagaOrder3Steps());
 
         // Simulamos el comportamiento del método createOrder
         Mockito.when(saga.createOrder()).thenReturn(true);
@@ -22,8 +22,8 @@ public class OrderSaga3PasosTest {
     }
 
     @Test
-    public void testDeductInventory() {
-        PedidoSaga3Pasos saga = Mockito.spy(new PedidoSaga3Pasos());
+    void testDeductInventory() {
+        SagaOrder3Steps saga = Mockito.spy(new SagaOrder3Steps());
 
         // Simulamos el comportamiento del método deductInventory
         Mockito.when(saga.deductInventory()).thenReturn(true);
@@ -36,8 +36,8 @@ public class OrderSaga3PasosTest {
     }
 
     @Test
-    public void testProcessPayment() {
-        PedidoSaga3Pasos saga = Mockito.spy(new PedidoSaga3Pasos());
+    void testProcessPayment() {
+        SagaOrder3Steps saga = Mockito.spy(new SagaOrder3Steps());
 
         // Simulamos el comportamiento del método processPayment
         Mockito.when(saga.processPayment()).thenReturn(true);
@@ -50,8 +50,8 @@ public class OrderSaga3PasosTest {
     }
 
     @Test
-    public void testCompensateCreateOrder() {
-        PedidoSaga3Pasos saga = Mockito.spy(new PedidoSaga3Pasos());
+    void testCompensateCreateOrder() {
+        SagaOrder3Steps saga = Mockito.spy(new SagaOrder3Steps());
 
         // Llamamos al método compensateCreateOrder
         saga.compensateCreateOrder();
@@ -61,8 +61,8 @@ public class OrderSaga3PasosTest {
     }
 
     @Test
-    public void testCompensateDeductInventory() {
-        PedidoSaga3Pasos saga = Mockito.spy(new PedidoSaga3Pasos());
+    void testCompensateDeductInventory() {
+        SagaOrder3Steps saga = Mockito.spy(new SagaOrder3Steps());
 
         // Llamamos al método compensateDeductInventory
         saga.compensateDeductInventory();
@@ -72,8 +72,8 @@ public class OrderSaga3PasosTest {
     }
 
     @Test
-    public void testCompensateProcessPayment() {
-        PedidoSaga3Pasos saga = Mockito.spy(new PedidoSaga3Pasos());
+    void testCompensateProcessPayment() {
+        SagaOrder3Steps saga = Mockito.spy(new SagaOrder3Steps());
 
         // Llamamos al método compensateProcessPayment
         saga.compensateProcessPayment();
